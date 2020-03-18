@@ -43,7 +43,15 @@
                                         </div>
                                     </th>
                                     <td class="border-0 align-middle"><strong>{{ $product->model->getPrice() }}</strong></td>
-                                    <td class="border-0 align-middle"><strong>1</strong></td>
+                                    <td class="border-0 align-middle">
+
+                                        <select name="qty" id="qty" class="custom-select" data-id="{{$product->rowId}}">
+                                            @for ($i = 1; $i <= 6 ; $i++)
+                                        <option value="{{$i}}">{{ $i }} </option>
+                                            @endfor
+                                        </select>
+
+                                    </td>
                                     <td class="border-0 align-middle">
                                         <form action=" {{ route('cart.destroy', $product->rowId) }}" method="post">
                                         @csrf
@@ -114,4 +122,12 @@
 </div>
 
 @endif
+@endsection
+@section('extra-js')
+    <script>
+       var selects = document.querySelectorAll('#qty');
+       Array.from(selects).forEach((element)=>{
+           console.log(element);
+       })
+    </script>
 @endsection
