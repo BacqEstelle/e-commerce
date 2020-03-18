@@ -24,6 +24,9 @@ class ProductsTableSeeder extends Seeder
                 'image' => 'http://via.placeholder.com/200x250',
 
 
+            ])->categories()->attach([
+                rand(1, 4),
+                rand(1, 4)
             ]);
         }
     }
