@@ -16,7 +16,9 @@
 
     <!-- Custom styles for this template -->
     <link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="assets/css/style.css" rel="stylesheet">
+    @yield('extra-script')
   </head>
 
   <body>
@@ -25,10 +27,10 @@
       <header class="blog-header py-3">
         <div class="row flex-nowrap justify-content-between align-items-center">
           <div class="col-4 pt-1">
-            <a class="text-muted" href="#">Subscribe</a>
+          <a class="text-muted" href="{{ route('cart.index')}}">Panier <span class="badge badge-pill badge-dark"> {{  Cart::count()   }} </span></a>
           </div>
           <div class="col-4 text-center">
-            <a class="blog-header-logo text-dark" href="#">Large</a>
+            <a class="blog-header-logo text-dark" href=" {{ route('products.index') }} ">Large</a>
           </div>
           <div class="col-4 d-flex justify-content-end align-items-center">
             <a class="text-muted" href="#">
@@ -55,14 +57,19 @@
           <a class="p-2 text-muted" href="#">Travel</a>
         </nav>
       </div>
+      @if(session('success'))
+      <div class="alert alert-success">
+          {{ session('success') }}
+      </div>
 
-      <div class="jumbotron p-3 p-md-5 text-white rounded bg-dark">
+      @endif
+      {{-- <div class="jumbotron p-3 p-md-5 text-white rounded bg-dark">
         <div class="col-md-6 px-0">
           <h1 class="display-4 font-italic">Title of a longer featured blog post</h1>
           <p class="lead my-3">Multiple lines of text that form the lede, informing new readers quickly and efficiently about what's most interesting in this post's contents.</p>
           <p class="lead mb-0"><a href="#" class="text-white font-weight-bold">Continue reading...</a></p>
         </div>
-      </div>
+      </div> --}}
 
       <div class="row mb-2">
         @yield('content')
@@ -202,5 +209,6 @@
         text: 'Thumbnail'
       });
     </script>
+    @yield('extra-js')
   </body>
 </html>
